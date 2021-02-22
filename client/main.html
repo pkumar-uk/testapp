@@ -1,0 +1,77 @@
+<head>
+  <title>testapp</title>
+</head>
+
+<body>
+   
+
+  {{> hello}}
+   
+</body>
+
+<template name="hello">
+  <h2>List</h2>
+ 
+  <button  type="submit" class="btn btn-sm btn-success" data-toggle="modal" data-target="#myModalinsert">Insert</button>
+  <br><br><br>
+
+  {{#each todolist}}
+    <h5><a class="btnc btn btn-sm btn-success" >Update</a> {{code}} - {{person}}  </h5>
+  {{/each}}
+
+  
+
+  <div class="modal fade" id="myModalinsert" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="margin-bottom:30px;">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="myModalLabel">Create</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          
+        </div>
+        <div class="modal-body">
+          {{#autoForm id="afInsert"  template="bootstrap4" collection=todo schema=schema type="insert"}}
+              {{> afQuickField name='code'}}
+              {{> afQuickField name='person' }}
+            <div class="form-group">
+              <button type="submit" class="btn btn-sm btn-primary">Insert</button>
+              <button type="reset" class="btn btn-sm btn-default">Reset</button>
+            </div>
+          {{/autoForm}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="myModalupdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="margin-bottom:30px;">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="myModalLabel">Update</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          
+        </div>
+        <div class="modal-body">
+          {{#autoForm id="afUpdate"  template="bootstrap4" collection=todo doc=doc schema=schema type="update"}}
+              {{> afQuickField name='code'}}
+              {{> afQuickField name='person' }}
+            <div class="form-group">
+              <button type="submit" class="btn btn-sm btn-primary">Update</button>
+              <button type="reset" class="btn btn-sm btn-default">Reset</button>
+            </div>
+          {{/autoForm}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="info">
+  <h2>Learn Meteor!</h2>
+   
+</template>
